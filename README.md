@@ -31,22 +31,18 @@
 - 项目文档地址：[查看Pro版本文档介绍](https://blog.kikiw.cn/index.php/archives/65/)
 
 
-![001 (1).png](https://blog.kikiw.cn/usr/uploads/2024/10/2968335545.png)
+![冬至限定版](https://blog.kikiw.cn/usr/uploads/2024/12/4144918317.jpg)
 
 ![Pro 大图](https://blog.kikiw.cn/usr/uploads/2024/10/3116824247.webp)
 
-![MacBook Pro 3 (1).png](https://blog.kikiw.cn/usr/uploads/2024/10/3461829137.png)
+![winter_solstice_limited_demo_2.jpg](https://blog.kikiw.cn/usr/uploads/2024/12/1238961985.jpg)
+![winter_solstice_limited_demo_3.jpg](https://blog.kikiw.cn/usr/uploads/2024/12/3085367637.jpg)
+![winter_solstice_limited_demo_4.jpg](https://blog.kikiw.cn/usr/uploads/2024/12/3636994675.jpg)
 
-![MacBook Pro 4 (1) (1).png](https://blog.kikiw.cn/usr/uploads/2024/10/68524214.png)
 
-![Presently _ IPhone _ 5 (1).png](https://blog.kikiw.cn/usr/uploads/2024/10/3108889100.png)
-
-![Shot（1） (1).PNG](https://blog.kikiw.cn/usr/uploads/2024/10/2898935205.png)
-
-![0ada1411-bd02-4510-8b11-ef2b6fe81925 (1).PNG](https://blog.kikiw.cn/usr/uploads/2024/10/1572367383.png)
-
-![Shot(1) (1).PNG](https://blog.kikiw.cn/usr/uploads/2024/10/1834648749.png)
-
+ !!!
+<iframe src="https://player.kikiw.cn/player/?url=https://wiki.kikiw.cn/video/LGNewUi_WXAPP.mp4" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" width="100%" height="450" frameborder="0" style="border-radius: 15px;overflow: hidden;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"></iframe>
+!!!
 
 
 ### 前言
