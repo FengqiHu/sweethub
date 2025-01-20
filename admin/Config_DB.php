@@ -17,7 +17,7 @@
 
 header("Content-Type:text/html; charset=utf8");
 
-//localhost 为数据库地址 一般使用默认的即可 或（127.0.0.1）
+//数据库地址
 $db_address = "localhost";
 
 //数据库用户名
@@ -26,7 +26,7 @@ $db_username = "LikeGirlv520";
 //数据库密码
 $db_password = "LikeGirlDBPw";
 
-//数据库表名 （默认与数据库用户名相同）
+//数据库名称
 $db_name = "LikeGirlv520";
 
 //为了保障你的小站安全 请设置一个复杂且独特的安全码 修改敏感信息时需填写
