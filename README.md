@@ -40,9 +40,6 @@
 ![winter_solstice_limited_demo_4.jpg](https://blog.kikiw.cn/usr/uploads/2024/12/3636994675.jpg)
 
 
- !!!
-<iframe src="https://player.kikiw.cn/player/?url=https://wiki.kikiw.cn/video/LGNewUi_WXAPP.mp4" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" width="100%" height="450" frameborder="0" style="border-radius: 15px;overflow: hidden;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"></iframe>
-!!!
 
 
 ### 前言
