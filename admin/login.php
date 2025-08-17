@@ -63,14 +63,14 @@
                     <!-- Logo -->
                     <div class="card-header pt-4 pb-4 text-center bg-primary">
                         <a href="##">
-                            <span style="color: #fff;font-size: 1.35rem; font-weight:bold">LikeGirl - Login</span>
+                            <span style="color: #fff;font-size: 1.35rem; font-weight:bold">SweetHub - Login</span>
                         </a>
                     </div>
 
                     <div class="card-body p-4">
 
                         <div class="text-center w-75 m-auto">
-                            <h4 class="text-dark-50 text-center mt-0 font-weight-bold">Like_Girl 5.2.0</h4>
+                            <h4 class="text-dark-50 text-center mt-0 font-weight-bold">SweetHub 5.2.0</h4>
                             <p class="text-muted mb-4">愿得一人心 白首不相离</p>
                         </div>
 

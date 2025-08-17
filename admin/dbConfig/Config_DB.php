@@ -27,7 +27,7 @@ $db_username = "root";
 $db_password = "12345678";
 
 //数据库名称
-$db_name = "love_page";
+$db_name = "sweethub";
 
 //为了保障你的小站安全 请设置一个复杂且独特的安全码 修改敏感信息时需填写
 $Like_Code = "LovePHP";

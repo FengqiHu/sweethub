@@ -3,7 +3,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/ipCheck.php');
 error_reporting(0);
 include_once 'dbConfig/connect.php';
 include_once 'Function.php';
-$sql = "select * from login where user = '" . $_SESSION['loginadmin'] . "' ";
+$sql = "select * from user where user = '" . $_SESSION['loginadmin'] . "' ";
 $loginresult = mysqli_query($connect, $sql);
 if (mysqli_num_rows($loginresult)) {
     $login = mysqli_fetch_array($loginresult);
@@ -11,7 +11,7 @@ if (mysqli_num_rows($loginresult)) {
     header("Location:login.php");
     die("<script>alert('参数错误')</script>");
 }
-$sql = "select * from login";
+$sql = "select * from user";
 $result = mysqli_query($connect, $sql);
 if (mysqli_num_rows($result)) {
     $login = mysqli_fetch_array($result);
