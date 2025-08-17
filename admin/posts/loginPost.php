@@ -5,7 +5,7 @@ session_start();
 include_once "../dbConfig/Database.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql = "select * from login where user =?";
+    $sql = "select * from user where user =?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $USER);
     $USER = mysqli_real_escape_string($conn, $user);
@@ -23,10 +23,10 @@ if ($USER == $Login_user) {
         echo "<script>location.href = '../index.php';</script>";
     } else {
         //密码错误
-        die("<script>alert('登录失败，用户名或密码错误！！！');history.back();</script>");
+        die("<script>alert('登录失败，密码错误！！！');history.back();</script>");
     }
 } else {
     //用户名错误
-    die("<script>alert('登录失败，用户名或密码错误！！！');history.back();</script>");
+    die("<script>alert('登录失败，用户名错误！！！');history.back();</script>");
 }
 
