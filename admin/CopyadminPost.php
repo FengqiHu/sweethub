@@ -2,7 +2,7 @@
 session_start();
 
 $file = $_SERVER['PHP_SELF'];
-include_once 'connect.php';
+include_once 'dbConfig/connect.php';
 
 if (isset($_SESSION['loginadmin']) && $_SESSION['loginadmin'] <> '') {
     $adminName = trim($_POST['adminName']);

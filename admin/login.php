@@ -1,11 +1,4 @@
-<!--
- * @Author: Ki.
- * @Date: 2022-12-21 07:35:43
- * @LastEditors: Ki.
- * @LastEditTime: 2022-12-21 07:51:06
- * @Description: 愿得一人心 白首不相离
- * Copyright (c) 2022 by Ki All Rights Reserved. 
--->
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -19,6 +12,7 @@
     <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css"/>
     <link href="/Style/css/loading.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <div id="Loadanimation" style="z-index:999999;">
@@ -80,8 +74,7 @@
                             <p class="text-muted mb-4">愿得一人心 白首不相离</p>
                         </div>
 
-                        <form action="loginPost.php" method="post" onsubmit="return check()">
-
+                        <form id="loginForm" action="posts/loginPost.php" method="post">
                             <div class="form-group">
                                 <label for="emailaddress">User</label>
                                 <input name="adminName" class="form-control" type="text" id="emailaddress" required=""
@@ -90,8 +83,11 @@
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input name="pw" class="form-control" type="password" required="" id="password"
+                                <!-- 原始密码输入框，不直接提交 -->
+                                <input id="rawPassword" class="form-control" type="password" required="" 
                                        placeholder="请输入密码">
+                                <!-- 隐藏的加密密码输入框，用于提交 -->
+                                <input name="pw" id="encryptedPassword" type="hidden">
                             </div>
 
                             <div class="form-group mb-3">
@@ -102,7 +98,7 @@
                             </div>
 
                             <div class="form-group mb-0 text-center">
-                                <button class="btn btn-primary" type="submit"> 登录后台</button>
+                                <button class="btn btn-primary" type="button" onclick="submitForm()"> 登录后台</button>
                             </div>
 
                         </form>
@@ -122,23 +118,30 @@
 <!-- end page -->
 <script>
     function check() {
-        //获取name数组中的第0个索引 并且去掉空格
+        //获取用户名和密码并去掉空格
         let adminName = document.getElementsByName('adminName')[0].value.trim();
-        let pw = document.getElementsByName('pw')[0].value.trim();
-        // 判断adminName长度是否为0 如果为0则提示弹窗
+        let pw = document.getElementById('rawPassword').value.trim();
+        
+        // 验证用户名
         if (adminName.length == 0) {
             alert("请填写用户名");
             return false;
-        } else if (pw.length == 0) {
+        }
+        
+        // 验证密码
+        if (pw.length == 0) {
             alert("请填写密码");
             return false;
         }
+        
+        // 验证特殊字符
         let user = /[a-zA-Z0-9]/g;
         let character = new RegExp("[`~!#$^&*()=|{}':;',\\[\\].<>/?~！#￥……&*（）——|{}【】‘；：”“'。，、？]");
+        
         if (character.test(adminName)) {
             alert("用户名含有特殊字符 请重新输入")
             return false;
-        }else if (!(user.test(adminName))) {
+        } else if (!(user.test(adminName))) {
             alert("用户名只支持数字 英文大小写字母")
             return false;
         }
@@ -147,6 +150,28 @@
             alert("密码含有特殊字符 请重新输入")
             return false;
         }
+        
+        return true;
+    }
+
+    // 表单提交处理函数
+    function submitForm() {
+        // 先进行表单验证
+        if (!check()) {
+            return;
+        }
+        
+        // 获取原始密码
+        let rawPassword = document.getElementById('rawPassword').value;
+        
+        // 进行MD5加密
+        let encryptedPassword = CryptoJS.MD5(rawPassword).toString();
+        
+        // 将加密后的密码放入隐藏字段
+        document.getElementById('encryptedPassword').value = encryptedPassword;
+        
+        // 提交表单
+        document.getElementById('loginForm').submit();
     }
 
 </script>

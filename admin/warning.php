@@ -50,7 +50,7 @@
 
 $file = $_GET['route'];
 
-include_once 'Database.php';
+include_once 'dbConfig/Database.php';
 include_once 'Function.php';
 
 if ($file){

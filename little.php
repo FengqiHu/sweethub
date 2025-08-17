@@ -25,7 +25,7 @@ $resarticle = mysqli_query($connect, $article);
                         class="card col-lg-12 col-md-12 col-sm-12 col-sm-x-12 <?php if ($text['Animation'] == "1") { ?>animated fadeInUp delay-03s<?php } ?>">
                         <div class="little_texts">
                             <a href="page.php?id=<?php echo $info['id'] ?>">
-                                <div class="top-title textOneHide"><?php echo $info['articletitle'] ?>
+                                <div class="top-title textOneHide"><?php echo $info['title'] ?>
                                     <svg class="little_icon" aria-hidden="true">
                                         <use xlink:href="#icon-zhankai"></use>
                                     </svg>
@@ -36,7 +36,7 @@ $resarticle = mysqli_query($connect, $article);
                                     <svg class="little_icon" aria-hidden="true">
                                         <use xlink:href="#icon-shoucang"></use>
                                     </svg>
-                                    <?php echo $info['articlename'] ?> <i>记录于</i> <?php echo $info['articletime'] ?></span>
+                                    <?php echo $info['author'] ?> <i>记录于</i> <?php echo $info['updated_time'] ?></span>
                             </div>
                         </div>
                     </div>
@@ -53,4 +53,4 @@ $resarticle = mysqli_query($connect, $article);
 
 </body>
 
-</html>
+</html> 

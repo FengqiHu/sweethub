@@ -1,22 +1,7 @@
-<!--
- * @Version：Like Girl 5.2.0
- * @Author: Ki.
- * @Date: 2024-11-08 10:00:00
- * @LastEditTime: 2024-11-08
- * @Description: 愿得一人心 白首不相离
- * @Document：https://blog.kikiw.cn/index.php/archives/52/
- * @Copyright (c) 2024 by Ki All Rights Reserved. 
- * @Warning：禁止以任何方式出售本项目 如有发现一切后果自行负责
- * @Warning：禁止以任何方式出售本项目 如有发现一切后果自行负责
- * @Warning：禁止以任何方式出售本项目 如有发现一切后果自行负责
- * @Message：开发不易 版权信息请保留 (更改版权可耻 请勿使用本程序)
--->
-
-
 <?php
-include ($_SERVER['DOCUMENT_ROOT'] . '/ipjc.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/ipCheck.php');
 error_reporting(0);
-include_once 'connect.php';
+include_once 'dbConfig/connect.php';
 include_once 'Function.php';
 $sql = "select * from login where user = '" . $_SESSION['loginadmin'] . "' ";
 $loginresult = mysqli_query($connect, $sql);
@@ -203,7 +188,7 @@ if (mysqli_num_rows($result)) {
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="/admin/Set.php" class="side-nav-link">
+                        <a href="/admin/setting.php" class="side-nav-link">
                             <i class="dripicons-meter"></i>
                             <span class="badge badge-success float-right"><i class="dripicons-gear margin_0"></i></span>
                             <span> 基本设置 </span>
@@ -211,7 +196,7 @@ if (mysqli_num_rows($result)) {
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="/admin/leavSet.php" class="side-nav-link">
+                        <a href="/admin/Leaving/leavingList.php" class="side-nav-link">
                             <i class="dripicons-view-apps"></i>
                             <span> 留言管理
                                 <span class="badge badge-danger float-right"><?php echo $shu ?></span>
@@ -220,7 +205,7 @@ if (mysqli_num_rows($result)) {
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="/admin/littleSet.php" class="side-nav-link">
+                        <a href="/admin/Article/articleList.php" class="side-nav-link">
                             <i class="dripicons-copy"></i>
                             <span> 点点滴滴
                                 <span class="badge badge-danger float-right"><?php echo $diannub ?></span>
@@ -229,7 +214,7 @@ if (mysqli_num_rows($result)) {
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="/admin/loveImgSet.php" class="side-nav-link">
+                        <a href="/admin/LoveImg/loveImgList.php" class="side-nav-link">
                             <i class="dripicons-photo-group"></i>
                             <span> 恋爱相册
                                 <span class="badge badge-danger float-right"><?php echo $imgnub ?></span>
@@ -238,7 +223,7 @@ if (mysqli_num_rows($result)) {
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="/admin/lovelist.php" class="side-nav-link">
+                        <a href="/admin/LoveList/loveList.php" class="side-nav-link">
                             <i class="dripicons-location"></i>
                             <span> 恋爱清单
                                 <span class="badge badge-danger float-right"><?php echo $listnub ?></span>
@@ -255,7 +240,7 @@ if (mysqli_num_rows($result)) {
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="/admin/ipList.php" class="side-nav-link">
+                        <a href="/admin/blackIpList.php" class="side-nav-link">
                             <i class="dripicons-location"></i>
                             <span> IP/拉黑</span>
                             <span class="menu-arrow"></span>
@@ -263,7 +248,7 @@ if (mysqli_num_rows($result)) {
                     </li>
 
                     <li class="side-nav-item">
-                        <a href="/admin/feifa.php" class="side-nav-link">
+                        <a href="/admin/illegalViewList.php" class="side-nav-link">
                             <i class="dripicons-time-reverse"></i>
                             <span> 非法访问</span>
                             <span class="menu-arrow"></span>
@@ -278,19 +263,6 @@ if (mysqli_num_rows($result)) {
                         </a>
                     </li>
                 </ul>
-
-
-                <!-- Help Box -->
-                <div class="help-box text-center">
-                    <a href="javascript: void(0);" class="float-right close-btn text-body">
-                        <i class="mdi mdi-close"></i>
-                    </a>
-                    <img src="assets/images/help-icon.svg" height="90" alt="Helper Icon Image" />
-                    <h5 class="mt-3">Like_Girl V5.2.0</h5>
-                    <p class="mb-3">愿得一人心 白首不相离</p>
-                    <a href="https://blog.kikiw.cn/index.php/archives/65/" target="_blank" class="btn btn-outline-primary btn-sm">购买Pro版本</a>
-                </div>
-                <!-- end Help Box -->
                 <!-- End Sidebar -->
 
 

@@ -9,7 +9,7 @@ include_once 'Nav.php';
             <div class="card-body">
                 <h4 class="header-title mb-3">信息配置</h4>
 
-                <form class="needs-validation" action="userPost.php" method="post" novalidate>
+                <form class="needs-validation" action="posts/editUserPost.php" method="post" novalidate>
                     <div class="form-group">
                         <label for="validationCustom01">是否开启前端加载动画</label>
                         <select class="form-control" id="example-select" name="Webanimation">
@@ -32,7 +32,6 @@ include_once 'Nav.php';
                         <?php if ($login['user'] == $adminuser)  {?><span class="badge badge-danger-lighten"style="font-size: 0.8rem;">您的账号为默认账号 请尽快修改</span><?php }else{ ?> <span class="badge badge-success-lighten"style="font-size: 0.8rem;">账号由大小写字母与数字组成</span> <?php } ?>
                         <input type="text" class="form-control"  placeholder="请输入需修改的管理员账号"
                                name="adminName" value="<?php echo $login['user'] ?>" required>
-
                     </div>
                     <div class="form-group mb-3">
                         <label for="validationCustom05">管理员登录密码</label>

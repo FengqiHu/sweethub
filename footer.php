@@ -132,6 +132,4 @@
         </div>
     </div>
 <?php endif; ?>
-
-
 <?php echo htmlspecialchars_decode($diy['footerCon'], ENT_QUOTES) ?>

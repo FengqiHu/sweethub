@@ -1,13 +1,13 @@
 <?php
-include_once 'admin/Database.php';
+include_once 'admin/dbConfig/Database.php';
 $time = gmdate("Y-m-d", time() + 8 * 3600);
-@$id = $_GET['id'];
+$id = $_GET['id'];
 if (is_numeric($id) == $id) {
     $article = "SELECT * FROM article WHERE id=? limit 1";
     $stmt = $conn->prepare($article);
     $stmt->bind_param("i", $id);
     $id = $_GET['id'];
-    $stmt->bind_result($id, $articletext, $articletime, $articletitle, $articlename);
+    $stmt->bind_result($id, $content, $updatedTime, $title, $author);
     $result = $stmt->execute();
     if (!$result)
         echo "错误信息：" . $stmt->error;
@@ -32,7 +32,7 @@ include_once 'head.php';
                 <div
                     class="card col-lg-12 col-md-12 col-sm-12 col-sm-x-12 <?php if ($text['Animation'] == "1") { ?>animated fadeInUp delay-03s<?php } ?>">
                     <div class="little_texts">
-                        <div class="top-title f2"><?php echo $articletitle ?>
+                        <div class="top-title f2"><?php echo $title ?>
                             <svg class="little_icon" aria-hidden="true">
                                 <use xlink:href="#icon-zhankai"></use>
                             </svg>
@@ -42,11 +42,11 @@ include_once 'head.php';
                                 <svg class="little_icon" aria-hidden="true">
                                     <use xlink:href="#icon-shoucang"></use>
                                 </svg>
-                                <?php echo $articlename ?> <i>记录于</i> <?php echo $articletime ?></span>
+                                <?php echo $author ?> <i>记录于</i> <?php echo $updatedTime ?></span>
                         </div>
                         <div class="line-top"></div>
                         <div id="md-view" class="file">
-                            <?php echo ($articletext) ?>
+                            <?php echo ($content) ?>
 
                         </div>
 

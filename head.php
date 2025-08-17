@@ -1,21 +1,10 @@
-<!--
- * @Version：Like Girl 5.2.0
- * @Author: Ki.
- * @Date: 2024-11-08 10:00:00
- * @LastEditTime: 2024-11-08
- * @Description: 愿得一人心 白首不相离
- * @Document：https://blog.kikiw.cn/index.php/archives/52/
- * @Copyright (c) 2024 by Ki All Rights Reserved. 
- * @Warning：禁止以任何方式出售本项目 如有发现一切后果自行负责
- * @Warning：禁止以任何方式出售本项目 如有发现一切后果自行负责
- * @Warning：禁止以任何方式出售本项目 如有发现一切后果自行负责
- * @Message：开发不易 版权信息请保留 (删除/修改作者版权的Dog请勿使用 感谢配合)
--->
+
 <?php
 error_reporting(0);
-include ("ipjc.php");
+include("ipCheck.php");
+// ip记录日志
 include_once ("ip.php");
-include_once 'admin/connect.php';
+include_once 'admin/dbConfig/connect.php';
 include_once 'admin/Function.php';
 
 $sql = "select * from text";
@@ -36,11 +25,6 @@ $Animation = $text['Animation'];
 
 
 <script>
-
-    console.log("%c Q & V | 3439780232", "color:#fff;background:#000;padding:8px 15px;font-weight: 700;border-radius:15px");
-    console.log("%c Like Girl 5.2.0 | Powered by Ki", "color:#fff;font-weight: 700;background:linear-gradient(270deg,#986fee,#8695e6,#68b7dd,#18d7d3);padding:8px 15px;border-radius:15px");
-    
-
     function setupVideoPlayer(video) {
         var videoContainer = $('<div class="video-container"></div>');
         var playPauseBtn = $('<div class="play-pause-btn"></div>');
@@ -140,6 +124,10 @@ $Animation = $text['Animation'];
 <link rel="stylesheet" href="../Style/css/list.css?LikeGirl=<?php echo $version ?>">
 <link rel="stylesheet" href="../Style/toastr/toastr.css?LikeGirl=<?php echo $version ?>">
 <link rel="stylesheet" href="../Style/css/loadinglike.css?LikeGirl=<?php echo $version ?>">
+<!-- Font Awesome 图标库 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<!-- 音乐播放器样式 -->
+<link rel="stylesheet" href="Style/css/music-player.css?v=<?php echo $version ?>">
 <script src="../Style/Font/font_leav/iconfont.js"></script>
 <script src="../Style/Font/font_leav/iconfont.js"></script>
 <script src="../Botui/botui.min.js"></script>
@@ -242,7 +230,7 @@ if ($diy['Pjaxkg'] == "1"):
 
 <style>
     .bg-img {
-        background: url(<?php echo $text['bgimg'] ?>) no-repeat center !important;
+        background: url(/admin/static/wallpaper/<?php echo $text['bgimg'] ?>) no-repeat center !important;
         background-size: cover !important;
     }
 

@@ -184,7 +184,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(20px);
   background: #cfcfcfa1;
   padding: 4rem 5rem 3rem;

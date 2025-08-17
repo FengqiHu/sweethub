@@ -15,14 +15,14 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <?php
-include_once 'admin/Database.php';
-$sql = "select * from IPerror where State=? limit 1";
-$stmt=$conn->prepare($sql);
-$stmt->bind_param("s",$ip);
+include_once 'admin/dbConfig/Database.php';
+$sql = "select * from black_ip where ip=? limit 1";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $ip);
 $ip = $_SERVER['REMOTE_ADDR'];
-$stmt->bind_result($id,$ipAdd,$Time,$ipkiki,$text);
+$stmt->bind_result($id, $ip, $city, $note, $updated_time);
 $result = $stmt->execute();
-if(!$result) echo "错误信息：".$stmt->error;
+if (!$result) echo "错误信息：" . $stmt->error;
 $stmt->fetch();
 
 ?>
@@ -80,6 +80,7 @@ $stmt->fetch();
     span.badge.badge-danger-lighten {
         font-size: 1.1rem;
     }
+
     span.badge.badge-success-lighten {
         font-size: 1.1rem;
         margin-bottom: 1rem;
@@ -108,6 +109,9 @@ $stmt->fetch();
                             <h4 class="text-dark-50 text-center mt-0 font-weight-bold">Like_Girl 5.0.0</h4>
                             <p class="text-muted">善语结善缘 恶语伤人心</p>
                             <p class="text-muted mb-4">
+                                <span class="badge badge-success-lighten">封禁IP：
+                                <?php if ($ip) { ?><?php echo $ip; ?><?php } else { ?>无 <?php } ?>
+                                </span>
                                 <span class="badge badge-success-lighten">封禁时间：
                                 <?php if ($Time) { ?><?php echo $Time; ?><?php } else { ?>无 <?php } ?>
                                 </span>
@@ -118,7 +122,9 @@ $stmt->fetch();
                             </p>
                         </div>
                         <div class="text-center w-75 m-auto" style="margin-bottom: 40px!important;">
-                            <?php if ($text){?> <img src="https://img.gejiba.com/images/ff63a429a6fbd20d6748242b182d2159.jpg" style="width: 100%;border-radius: 20px;" alt=""> <?php } ?>
+                            <?php if ($text) { ?> <img
+                                    src="https://img.gejiba.com/images/ff63a429a6fbd20d6748242b182d2159.jpg"
+                                    style="width: 100%;border-radius: 20px;" alt=""> <?php } ?>
 
                         </div>
 
