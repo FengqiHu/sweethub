@@ -26,6 +26,26 @@ if ($icon == 1 && isset($_FILES['imgFile']) && $_FILES['imgFile']['error'] == 0)
     // 目标存储路径
     $targetDir = __DIR__ . "/../static/listImg/";
 
+// 检查目录是否可写
+    if (!is_dir($targetDir)) {
+        if (!mkdir($targetDir, 0755, true)) {
+            echo json_encode([
+                'success' => 0,
+                'message' => '无法创建目录，请检查权限'
+            ]);
+            exit;
+        }
+    }
+
+// 检查目录是否可写
+    if (!is_writable($targetDir)) {
+        echo json_encode([
+            'success' => 0,
+            'message' => '目录不可写，请检查权限'
+        ]);
+        exit;
+    }
+
     // 如果目录不存在则创建
     if (!is_dir($targetDir)) {
         if (!mkdir($targetDir, 0777, true)) {
