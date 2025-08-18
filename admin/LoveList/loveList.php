@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once '../Component/Nav.php';
-$lovelist = "select * from lovelist order by id desc";
+$lovelist = "select * from loveList order by id desc";
 $reslist = mysqli_query($connect, $lovelist);
 ?>
 
