@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -76,15 +75,15 @@
 
                         <form id="loginForm" action="posts/loginPost.php" method="post">
                             <div class="form-group">
-                                <label for="emailaddress">User</label>
-                                <input name="adminName" class="form-control" type="text" id="emailaddress" required=""
+                                <label for="adminName">User</label>
+                                <input name="adminName" class="form-control" type="text" id="adminName" required=""
                                        placeholder="请输入用户名">
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <!-- 原始密码输入框，不直接提交 -->
-                                <input id="rawPassword" class="form-control" type="password" required="" 
+                                <input id="rawPassword" class="form-control" type="password" required=""
                                        placeholder="请输入密码">
                                 <!-- 隐藏的加密密码输入框，用于提交 -->
                                 <input name="pw" id="encryptedPassword" type="hidden">
@@ -121,23 +120,23 @@
         //获取用户名和密码并去掉空格
         let adminName = document.getElementsByName('adminName')[0].value.trim();
         let pw = document.getElementById('rawPassword').value.trim();
-        
+
         // 验证用户名
         if (adminName.length == 0) {
             alert("请填写用户名");
             return false;
         }
-        
+
         // 验证密码
         if (pw.length == 0) {
             alert("请填写密码");
             return false;
         }
-        
+
         // 验证特殊字符
         let user = /[a-zA-Z0-9]/g;
         let character = new RegExp("[`~!#$^&*()=|{}':;',\\[\\].<>/?~！#￥……&*（）——|{}【】‘；：”“'。，、？]");
-        
+
         if (character.test(adminName)) {
             alert("用户名含有特殊字符 请重新输入")
             return false;
@@ -145,12 +144,12 @@
             alert("用户名只支持数字 英文大小写字母")
             return false;
         }
-        
+
         if (character.test(pw)) {
             alert("密码含有特殊字符 请重新输入")
             return false;
         }
-        
+
         return true;
     }
 
@@ -160,24 +159,60 @@
         if (!check()) {
             return;
         }
-        
-        // 获取原始密码
-        let rawPassword = document.getElementById('rawPassword').value;
-        
+
+        // 显示加载动画
+        $("#Loadanimation").fadeIn(300);
+
+        // 获取用户名和原始密码
+        let adminName = $('#adminName').val().trim();
+        let rawPassword = $('#rawPassword').val();
+
         // 进行MD5加密
         let encryptedPassword = CryptoJS.MD5(rawPassword).toString();
-        
-        // 将加密后的密码放入隐藏字段
-        document.getElementById('encryptedPassword').value = encryptedPassword;
-        
-        // 提交表单
-        document.getElementById('loginForm').submit();
-    }
 
+        console.log('准备发送AJAX请求'); // 调试用
+
+        // 使用 AJAX 提交
+        $.ajax({
+            url: 'posts/loginPost.php',
+            type: 'POST',
+            data: {
+                adminName: adminName,
+                pw: encryptedPassword
+            },
+            dataType: 'text',
+            success: function (response) {
+                console.log('收到响应：', response); // 调试用
+
+                // 隐藏加载动画
+                $("#Loadanimation").fadeOut(300);
+
+                // 根据返回的响应处理
+                if (response.indexOf('success') !== -1) {
+                    // 登录成功，跳转到后台首页
+                    window.location.href = 'index.php';
+                } else if (response.indexOf('密码错误') !== -1) {
+                    alert('登录失败，密码错误！！！');
+                } else if (response.indexOf('用户名错误') !== -1) {
+                    alert('登录失败，用户名错误！！！');
+                } else {
+                    alert('登录失败，请稍后重试！');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log('AJAX错误：', status, error); // 调试用
+
+                // 隐藏加载动画
+                $("#Loadanimation").fadeOut(300);
+                alert('网络错误，请检查网络连接！');
+            }
+        });
+    }
 </script>
 
 <footer class="footer footer-alt">
-    Copyright © 2022 - <?php echo date('Y'); ?> Ki. & <a href="https://blog.kikiw.cn/index.php/archives/52/" target="_blank">Like_Girl</a> All
+    Copyright © 2022 - <?php echo date('Y'); ?> Ki. & <a href="https://blog.kikiw.cn/index.php/archives/52/"
+                                                         target="_blank">Like_Girl</a> All
     Rights Reserved.
 </footer>
 

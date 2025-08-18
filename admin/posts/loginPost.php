@@ -1,32 +1,38 @@
 <?php
 session_start();
-@($user = $_POST['adminName']);
-@($pw = $_POST['pw']);
+header('Content-Type: text/plain; charset=utf-8');
+
+$user = isset($_POST['adminName']) ? $_POST['adminName'] : '';
+$pw = isset($_POST['pw']) ? $_POST['pw'] : '';
+
 include_once "../dbConfig/Database.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $sql = "select * from user where user =?";
+    $sql = "select * from user where user = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $USER);
-    $USER = mysqli_real_escape_string($conn, $user);
-    $PW = $pw;
-    $stmt->bind_result($id, $Login_user, $Login_pw);
-    $result = $stmt->execute();
-    if (!$result)
-        echo "错误信息：" . $stmt->error;
-    $stmt->fetch();
-}
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($USER == $Login_user) {
-    if ($PW == $Login_pw) {
-        $_SESSION['loginadmin'] = $USER;
-        echo "<script>location.href = '../index.php';</script>";
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $Login_user = $row['user'];
+        $Login_pw = $row['password']; // 假设密码字段名是 password
+
+        if ($pw == $Login_pw) {
+            $_SESSION['loginadmin'] = $user;
+            echo "success:登录成功";
+        } else {
+            echo "error:密码错误";
+        }
     } else {
-        //密码错误
-        die("<script>alert('登录失败，密码错误！！！');history.back();</script>");
+        echo "error:用户名错误";
     }
+
+    $stmt->close();
 } else {
-    //用户名错误
-    die("<script>alert('登录失败，用户名错误！！！');history.back();</script>");
+    echo "error:非法请求";
 }
 
+$conn->close();
+?>
