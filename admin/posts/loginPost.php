@@ -1,10 +1,4 @@
 <?php
-// 设置 session 配置
-ini_set('session.cookie_path', '/');
-ini_set('session.cookie_domain', '.sweethub.cn'); // 注意前面的点
-//ini_set('session.cookie_secure', true); // 如果使用 HTTPS
-ini_set('session.cookie_httponly', true);
-ini_set('session.cookie_samesite', 'Lax');
 session_start();
 header('Content-Type: text/plain; charset=utf-8');
 
