@@ -72,10 +72,12 @@ if (isset($_FILES['imgFile']) && $_FILES['imgFile']['error'] == 0) {
         echo 'upload_failed';
         exit;
     }
+    // 更新数据库
+    $sql = "UPDATE loveImg SET imgDatd='$imgDatd', imgText='$imgText', imgUrl='$filename' WHERE id=$id";
+}else{
+    $sql = "UPDATE loveImg SET imgDatd='$imgDatd', imgText='$imgText' WHERE id=$id";
 }
 
-// 更新数据库
-$sql = "UPDATE loveImg SET imgDatd='$imgDatd', imgText='$imgText', imgUrl='$filename' WHERE id=$id";
 $result = mysqli_query($connect, $sql);
 
 if ($result) {

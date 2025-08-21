@@ -254,23 +254,7 @@ $inv_date = date("Y-m-d");
                 }
             },
             error: function(xhr, status, error) {
-                console.error('Upload error:', {
-                    status: xhr.status,
-                    statusText: xhr.statusText,
-                    responseText: xhr.responseText,
-                    error: error
-                });
-
-                if (status === 'timeout') {
-                    toastr["error"]("上传超时，请检查网络连接", "SweetHub");
-                } else if (xhr.status === 413) {
-                    toastr["error"]("文件太大，超出服务器限制", "SweetHub");
-                } else if (xhr.status === 500) {
-                    toastr["error"]("服务器内部错误", "SweetHub");
-                } else {
-                    toastr["error"]("网络错误：" + error, "SweetHub");
-                }
-
+                toastr["error"]("网络错误，请稍后重试", "SweetHub");
                 $('button[type="submit"]').prop('disabled', false).text('新增相册');
             }
         });
