@@ -1,7 +1,7 @@
 <?php
 include_once 'head.php';
 $time = gmdate("Y-m-d", time() + 8 * 3600);
-$lovelist = "select * from lovelist order by id desc";
+$lovelist = "select * from loveList order by id desc";
 $reslist = mysqli_query($connect, $lovelist);
 $row_count = mysqli_num_rows($reslist);
 $hideElement = ($row_count < 1);
@@ -31,7 +31,7 @@ $hideElement = ($row_count < 1);
                                 <li class="cike">
                                     <?php if ($list['icon']) { ?><i class="iconfont icon-chenggong2 com"></i> <?php } ?>
                                     <?php if (!$list['icon']) { ?><i class="iconfont icon-chenggong2 air"></i> <?php } ?>
-                                    <span><?php echo $list['eventname']; ?></span>
+                                    <span><?php echo $list['eventName']; ?></span>
                                     <?php if ($list['imgurl']) { ?>
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-tupian"></use>
@@ -40,7 +40,7 @@ $hideElement = ($row_count < 1);
                                 <ul>
                                     <li>
                                         <?php if ($list['imgurl']) { ?>
-                                            <img data-funlazy="<?php echo $list['imgurl']; ?>" alt="<?php echo $list['eventname']; ?>"> 
+                                            <img data-funlazy="/admin/static/listImg/<?php echo $list['imgurl']; ?>" alt="<?php echo $list['eventname']; ?>">
                                         <?php } ?>
                                     </li>
                                 </ul>

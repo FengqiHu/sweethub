@@ -23,7 +23,7 @@ $resImg = mysqli_query($connect, $loveImg);
                 <idv
                     class="img_card col-lg-4 col-md-6 col-sm-12 col-sm-x-12 <?php if ($text['Animation'] == "1") { ?>animated zoomIn delay-03s<?php } ?>">
                     <div class="love_img">
-                        <img data-funlazy="<?php echo $list['imgUrl'] ?>" alt="<?php echo $list['imgText'] ?>"
+                        <img data-funlazy="/admin/static/albumImg/<?php echo $list['imgUrl'] ?>" alt="<?php echo $list['imgText'] ?>"
                             data-description="<?php echo $list['imgDatd'] ?>">
 
                         <div class="words">
