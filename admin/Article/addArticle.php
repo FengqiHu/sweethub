@@ -15,10 +15,10 @@ include_once '../Component/Nav.php';
                       novalidate>
                     <div class="form-group col-sm-4">
                         <label for="validationCustom01">发布者Name</label>
-                            <select class="form-control" id="example-select" name="author">
-                            	<option value="<?php echo $text['boy'] ?>"><?php echo $text['boy'] ?></option>
-                            	<option value="<?php echo $text['girl'] ?>"><?php echo $text['girl'] ?></option>
-                            </select>
+                        <select class="form-control" id="example-select" name="author">
+                            <option value="<?php echo $text['boy'] ?>"><?php echo $text['boy'] ?></option>
+                            <option value="<?php echo $text['girl'] ?>"><?php echo $text['girl'] ?></option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="validationCustom01">标题</label>

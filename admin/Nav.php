@@ -79,7 +79,7 @@ if (mysqli_num_rows($result)) {
     $didi = mysqli_fetch_array($resdian);
     $diannub = $didi['dian'];
     //恋爱清单
-    $list = "select count(id) as list from lovelist";
+    $list = "select count(id) as list from loveList";
     $reslsit = mysqli_query($connect, $list);
     $listlove = mysqli_fetch_array($reslsit);
     $listnub = $listlove['list'];

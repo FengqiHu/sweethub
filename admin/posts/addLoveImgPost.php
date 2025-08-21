@@ -20,6 +20,30 @@ if (empty($imgDatd) || empty($imgText)) {
     exit;
 }
 
+// 处理文件上传时，检查具体的错误类型
+if (!isset($_FILES['imgFile']) || $_FILES['imgFile']['error'] != 0) {
+    $errorCode = isset($_FILES['imgFile']['error']) ? $_FILES['imgFile']['error'] : 'no_file';
+
+    // 根据错误代码返回具体信息
+    switch($errorCode) {
+        case UPLOAD_ERR_INI_SIZE:
+            echo 'file_exceeds_ini_size';
+            break;
+        case UPLOAD_ERR_FORM_SIZE:
+            echo 'file_exceeds_form_size';
+            break;
+        case UPLOAD_ERR_PARTIAL:
+            echo 'file_partial_upload';
+            break;
+        case UPLOAD_ERR_NO_FILE:
+            echo 'no_file_uploaded';
+            break;
+        default:
+            echo 'empty_fields';
+    }
+    exit;
+}
+
 // 根据上传类型处理
 if ($uploadType === 'file') {
     // 处理文件上传
