@@ -92,14 +92,15 @@ if ($uploadType === 'file') {
         echo 'upload_failed';
         exit;
     }
-} else {
-    // 使用URL
-    $imgUrl = isset($_POST['imgUrl']) ? mysqli_real_escape_string($connect, $_POST['imgUrl']) : '';
-    if (empty($imgUrl)) {
-        echo 'empty_fields';
-        exit;
-    }
 }
+//else {
+//    // 使用URL
+//    $imgUrl = isset($_POST['imgUrl']) ? mysqli_real_escape_string($connect, $_POST['imgUrl']) : '';
+//    if (empty($imgUrl)) {
+//        echo 'empty_fields';
+//        exit;
+//    }
+//}
 
 // 插入数据库
 $sql = "INSERT INTO loveImg (imgDatd, imgText, imgUrl) VALUES ('$imgDatd', '$imgText', '$filename')";
