@@ -15,7 +15,7 @@ $resImg = mysqli_query($connect, $loveImg);
 <body>
 
     <div id="pjax-container">
-        <h4 class="text-ce central">记录下你的最美瞬间</h4>
+        <h4 class="text-ce central">我们的回忆</h4>
         <div class="row central">
             <?php
             while ($list = mysqli_fetch_array($resImg)) {

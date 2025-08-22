@@ -18,7 +18,7 @@ $inv_date = date("Y-m-d");
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="validationCustom01">图片描述<span class="margin_left badge badge-success-lighten">尽量控制在25个字符以内 </span></label>
+                        <label for="validationCustom01">图片描述<span class="margin_left badge badge-success-lighten">尽量控制在50个字符以内 </span></label>
                         <input name="imgText" type="text" class="form-control" placeholder="请输入图片描述" value="" required>
                     </div>
 
@@ -172,8 +172,8 @@ $inv_date = date("Y-m-d");
             return false;
         }
 
-        if (imgText.length > 25) {
-            toastr["error"]("图片描述不能超过25个字符", "SweetHub");
+        if (imgText.length > 50) {
+            toastr["error"]("图片描述不能超过50个字符", "SweetHub");
             return false;
         }
 
