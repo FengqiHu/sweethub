@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once '../Component/Nav.php';
-$loveImg = "select * from loveImg order by id desc";
+$loveImg = "select * from loveImg order by imgDatd desc";
 $resImg = mysqli_query($connect, $loveImg);
 ?>
 
