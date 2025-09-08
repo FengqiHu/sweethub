@@ -43,7 +43,12 @@ $resImg = mysqli_query($connect, $loveImg);
                                     <?php echo $SerialNumber ?>
                                 </div>
                             </td>
-                            <td><?php echo $list['imgText'] ?></td>
+                            <td>
+                                <?php
+                                $text = $list['imgText'];
+                                echo mb_strlen($text, 'UTF-8') > 30 ? mb_substr($text, 0, 30, 'UTF-8') . '…' : $text;
+                                ?>
+                            </td>
                             <td><?php echo $list['imgDatd'] ?></td>
                             <td>
                                 <a href="editLoveImg.php?id=<?php echo $list['id'] ?>">
