@@ -7,7 +7,7 @@ $perPage = 6; // 每页显示9个
 $offset = ($page - 1) * $perPage;
 
 // 排序设置
-$sort = isset($_GET['sort']) ? $_GET['sort'] : 'desc'; // 默认降序（最新的在前）
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'asc'; // 默认降序（最新的在前）
 $sortOrder = ($sort === 'asc') ? 'ASC' : 'DESC';
 
 // 获取总数
