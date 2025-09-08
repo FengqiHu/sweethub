@@ -8,6 +8,19 @@ if (!isset($_SESSION['loginadmin'])) {
     exit;
 }
 
+// 获取表单数据
+$id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+$imgDatd = isset($_POST['imgDatd']) ? mysqli_real_escape_string($connect, $_POST['imgDatd']) : '';
+$imgText = isset($_POST['imgText']) ? mysqli_real_escape_string($connect, $_POST['imgText']) : '';
+$oldImgUrl = isset($_POST['oldImgUrl']) ? $_POST['oldImgUrl'] : '';
+$imgUrl = $oldImgUrl; // 默认使用原图片URL
+
+// 验证必填字段
+if (empty($id) || empty($imgText)) {
+    echo 'empty_fields';
+    exit;
+}
+
 // 图片压缩函数
 function compressImage($sourcePath, $targetDir, $quality = 85) {
     // 获取图片信息
@@ -30,7 +43,6 @@ function compressImage($sourcePath, $targetDir, $quality = 85) {
     // 优先尝试WebP格式
     if (function_exists('imagewebp')) {
         $webpPath = $targetDir . $baseFilename . '.webp';
-        // @imagewebp: 将压缩后的 WebP 图片保存到指定路径
         if (@imagewebp($image, $webpPath, $quality)) {
             if (file_exists($webpPath) && filesize($webpPath) > 0) {
                 $finalFilename = $baseFilename . '.webp';
@@ -45,7 +57,6 @@ function compressImage($sourcePath, $targetDir, $quality = 85) {
     // 如果WebP失败，尝试JPEG
     if (!$result) {
         $jpegPath = $targetDir . $baseFilename . '.jpg';
-        // @imagejpeg: 将压缩后的 WebP 图片保存到指定路径
         if (@imagejpeg($image, $jpegPath, $quality)) {
             if (file_exists($jpegPath) && filesize($jpegPath) > 0) {
                 $finalFilename = $baseFilename . '.jpg';
@@ -62,50 +73,8 @@ function compressImage($sourcePath, $targetDir, $quality = 85) {
     return $result ? $finalFilename : false;
 }
 
-// 获取表单数据
-$imgDatd = isset($_POST['imgDatd']) ? mysqli_real_escape_string($connect, $_POST['imgDatd']) : '';
-$imgText = isset($_POST['imgText']) ? mysqli_real_escape_string($connect, $_POST['imgText']) : '';
-$uploadType = isset($_POST['uploadType']) ? $_POST['uploadType'] : 'file';
-$imgUrl = '';
-
-// 验证必填字段
-if (empty($imgDatd) || empty($imgText)) {
-    echo 'empty_fields';
-    exit;
-}
-
-// 处理文件上传时，检查具体的错误类型
-if (!isset($_FILES['imgFile']) || $_FILES['imgFile']['error'] != 0) {
-    $errorCode = isset($_FILES['imgFile']['error']) ? $_FILES['imgFile']['error'] : 'no_file';
-
-    // 根据错误代码返回具体信息
-    switch($errorCode) {
-        case UPLOAD_ERR_INI_SIZE:
-            echo 'file_exceeds_ini_size';
-            break;
-        case UPLOAD_ERR_FORM_SIZE:
-            echo 'file_exceeds_form_size';
-            break;
-        case UPLOAD_ERR_PARTIAL:
-            echo 'file_partial_upload';
-            break;
-        case UPLOAD_ERR_NO_FILE:
-            echo 'no_file_uploaded';
-            break;
-        default:
-            echo 'empty_fields';
-    }
-    exit;
-}
-
-// 根据上传类型处理
-if ($uploadType === 'file') {
-    // 处理文件上传
-    if (!isset($_FILES['imgFile']) || $_FILES['imgFile']['error'] != 0) {
-        echo 'empty_fields';
-        exit;
-    }
-
+// 处理文件上传
+if (isset($_FILES['imgFile']) && $_FILES['imgFile']['error'] == 0) {
     // 目标存储路径
     $targetDir = __DIR__ . "/../static/albumImg/";
 
@@ -135,9 +104,11 @@ if ($uploadType === 'file') {
         exit;
     }
 
+    // 生成唯一文件名
     // 使用压缩函数处理图片
     $filename = compressImage($file['tmp_name'], $targetDir, 85);
 
+    // 移动上传的文件
     if ($filename) {
         $imgUrl = '/admin/static/albumImg/' . $filename;
     } else {
@@ -152,10 +123,12 @@ if ($uploadType === 'file') {
             exit;
         }
     }
+    // 更新数据库
+    $sql = "UPDATE loveImg SET imgDatd='$imgDatd', imgText='$imgText', imgUrl='$filename' WHERE id=$id";
+}else{
+    $sql = "UPDATE loveImg SET imgDatd='$imgDatd', imgText='$imgText' WHERE id=$id";
 }
 
-// 插入数据库
-$sql = "INSERT INTO loveImg (imgDatd, imgText, imgUrl) VALUES ('$imgDatd', '$imgText', '$filename')";
 $result = mysqli_query($connect, $sql);
 
 if ($result) {

@@ -185,7 +185,7 @@ $Imglist = mysqli_fetch_array($resImg);
         $('button[type="submit"]').prop('disabled', true).text('更新中...');
 
         $.ajax({
-            url: '../posts/uploadLoveImgPost.php',
+            url: '../posts/editLoveImgPost.php',
             type: 'POST',
             data: formData,
             processData: false,
