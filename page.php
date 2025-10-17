@@ -7,7 +7,7 @@ if (is_numeric($id) == $id) {
     $stmt = $conn->prepare($article);
     $stmt->bind_param("i", $id);
     $id = $_GET['id'];
-    $stmt->bind_result($id, $content, $updatedTime, $title, $author);
+    $stmt->bind_result($id, $content, $title, $author, $updatedTime);
     $result = $stmt->execute();
     if (!$result)
         echo "错误信息：" . $stmt->error;

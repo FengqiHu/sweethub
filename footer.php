@@ -123,6 +123,7 @@
 <?php if ($icp <> '' || $copy <> ''): ?>
     <div class="footer-warp">
         <div class="footer">
+            <p>Made for Shutiao.</p>
             <?php if ($icp): ?>
                 <p><img src="../Style/img/icp.svg"><a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><?php echo $icp ?></a></p>
             <?php endif;
