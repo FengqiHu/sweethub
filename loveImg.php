@@ -22,10 +22,15 @@ $resImg = mysqli_query($connect, $loveImg);
 ?>
 
 <head>
-    <link rel="stylesheet" href="Style/css/loveImg.css?LikeGirl=<?php echo $version ?>">
     <meta charset="utf-8" />
     <title><?php echo $text['title'] ?> — 恋爱相册</title>
+</head>
 
+<body>
+<div id="pjax-container">
+
+    <link rel="stylesheet" href="Style/css/loveImg.css?LikeGirl=<?php echo $version ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* 工具栏样式 */
         .toolbar {
@@ -125,16 +130,8 @@ $resImg = mysqli_query($connect, $loveImg);
             }
         }
     </style>
-
-    <!-- 添加Font Awesome图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
-<body>
-<div id="pjax-container">
     <h4 class="text-ce central">我们的回忆</h4>
 
-    <!-- 排序工具栏 -->
     <div class="toolbar">
         <a href="?sort=desc&page=1" class="sort-btn <?php echo $sort === 'desc' ? 'active' : ''; ?>">
             <i class="fas fa-sort-amount-down"></i>
@@ -166,17 +163,14 @@ $resImg = mysqli_query($connect, $loveImg);
         ?>
     </div>
 
-    <!-- 分页组件 -->
     <?php if ($totalPages > 1): ?>
         <div class="pagination">
-            <!-- 上一页 -->
             <?php if ($page > 1): ?>
                 <a href="?page=<?php echo $page - 1; ?>&sort=<?php echo $sort; ?>">上一页</a>
             <?php else: ?>
                 <span class="disabled">上一页</span>
             <?php endif; ?>
 
-            <!-- 页码 -->
             <?php
             $start = max(1, $page - 2);
             $end = min($totalPages, $page + 2);
@@ -200,14 +194,12 @@ $resImg = mysqli_query($connect, $loveImg);
             }
             ?>
 
-            <!-- 下一页 -->
             <?php if ($page < $totalPages): ?>
                 <a href="?page=<?php echo $page + 1; ?>&sort=<?php echo $sort; ?>">下一页</a>
             <?php else: ?>
                 <span class="disabled">下一页</span>
             <?php endif; ?>
 
-            <!-- 页面信息 -->
             <span class="page-info">第 <?php echo $page; ?> 页，共 <?php echo $totalPages; ?> 页</span>
         </div>
     <?php endif; ?>
