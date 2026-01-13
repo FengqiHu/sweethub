@@ -53,7 +53,7 @@ include_once 'head.php';
                         <div class="textinfo">
                             <div class="MsgTopInfo">
                                 <i class="time">
-                                    <?php echo time_tran($updated_time) ?> <b class="yuan"></b>
+                                    <?php echo date("Y年m月d日", strtotime($updated_time)); ?> <b class="yuan"></b>
                                     <?php echo $city ? $city : '未知'; ?>
                                 </i>
                             </div>
